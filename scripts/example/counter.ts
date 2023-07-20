@@ -1,4 +1,4 @@
-import hre from "hardhat";
+import hre, { ethers } from "hardhat";
 import { Counter__factory } from "../../typechain-types";
 
 async function main() {
@@ -21,11 +21,12 @@ async function main() {
       .fill(0)
       .map(() => iCounter.encodeFunctionData("addCount1", []));
     const valueArr = new Array(batchSize).fill(0);
-
-    // send tx
     const beforeCount = await counterC.count();
     console.log("before: ", beforeCount.toString());
-    const tx = await batchExcuterC.connect(signer).batchExcute(counterC.address, dataArr, valueArr);
+    // send tx
+    const tx = await batchExcuterC
+      .connect(signer)
+      .batchExcute1(counterC.address, dataArr, valueArr, { gasLimit: 10000000 });
     await tx.wait();
     const afterCount = await counterC.count();
     console.log("after: ", afterCount.toString());
@@ -42,7 +43,9 @@ async function main() {
     // send tx
     const beforeCount = await counterC.count();
     console.log("before: ", beforeCount.toString());
-    const tx = await batchExcuterC.connect(signer).batchExcute(counterC.address, dataArr, valueArr);
+    const tx = await batchExcuterC
+      .connect(signer)
+      .batchExcute1(counterC.address, dataArr, valueArr);
     await tx.wait();
     const afterCount = await counterC.count();
     console.log("after: ", afterCount.toString());
@@ -73,7 +76,9 @@ async function main() {
     await Promise.all(promises);
     console.log("before: ", user_count);
 
-    const tx = await batchExcuterC.connect(signer).batchExcute(counterC.address, dataArr, valueArr);
+    const tx = await batchExcuterC
+      .connect(signer)
+      .batchExcute1(counterC.address, dataArr, valueArr);
     await tx.wait();
 
     promises = userArr.map(async (user) => {
