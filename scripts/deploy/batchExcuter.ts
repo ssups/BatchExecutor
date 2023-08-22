@@ -1,7 +1,7 @@
 import hre from "hardhat";
 
 async function main() {
-  const factory = await hre.ethers.getContractFactory("BatchExcutor");
+  const factory = await hre.ethers.getContractFactory("BatchExecutor");
   const contract = await factory.deploy();
   await contract.deployed();
   const tx = contract.deployTransaction;

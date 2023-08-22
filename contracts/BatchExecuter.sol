@@ -5,8 +5,8 @@ pragma solidity ^0.8.0;
 error ExcutionFailed1(uint index, bytes data);
 error ExcutionFailed2(address to, uint index, bytes data);
 
-contract BatchExcutor {
-    function batchExcutor1(address ca,
+contract BatchExecutor {
+    function batchExecutor1(address ca,
         bytes[] calldata dataBytesList,
         uint[] calldata valueList
     ) external {
@@ -21,7 +21,7 @@ contract BatchExcutor {
         }
     }
 
-    function batchExcutor2(
+    function batchExecutor2(
         address[] calldata caList,
         bytes[] calldata dataBytesList,
         uint[] calldata valueList

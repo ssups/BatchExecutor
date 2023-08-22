@@ -1,9 +1,9 @@
-# This BatchExcutor contract helps batch-excuting for any contracts function
+# This BatchExecutor contract helps batch-excuting for any contracts function
 
 for deploy
 
 ```shell
-npx hardhat run ./deploy/BatchExcutor.ts
+npx hardhat run ./deploy/BatchExecutor.ts
 ```
 
 <br>

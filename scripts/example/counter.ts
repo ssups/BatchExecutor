@@ -3,9 +3,9 @@ import { Counter__factory } from "../../typechain-types";
 
 async function main() {
   // deploy
-  const BatchExcutorF = await hre.ethers.getContractFactory("BatchExcutor");
-  const BatchExcutorC = await BatchExcutorF.deploy();
-  await BatchExcutorC.deployed();
+  const BatchExecutorF = await hre.ethers.getContractFactory("BatchExecutor");
+  const BatchExecutorC = await BatchExecutorF.deploy();
+  await BatchExecutorC.deployed();
   const counterF = await hre.ethers.getContractFactory("Counter");
   const counterC = await counterF.deploy();
   await counterC.deployed();
@@ -24,7 +24,7 @@ async function main() {
     const beforeCount = await counterC.count();
     console.log("before: ", beforeCount.toString());
     // send tx
-    const tx = await BatchExcutorC.connect(signer).batchExcutor1(
+    const tx = await BatchExecutorC.connect(signer).batchExecutor1(
       counterC.address,
       dataArr,
       valueArr,
@@ -47,7 +47,7 @@ async function main() {
     // send tx
     const beforeCount = await counterC.count();
     console.log("before: ", beforeCount.toString());
-    const tx = await BatchExcutorC.connect(signer).batchExcutor1(
+    const tx = await BatchExecutorC.connect(signer).batchExecutor1(
       counterC.address,
       dataArr,
       valueArr
@@ -83,7 +83,7 @@ async function main() {
     await Promise.all(promises);
     console.log("before: ", user_count);
 
-    const tx = await BatchExcutorC.connect(signer).batchExcutor1(
+    const tx = await BatchExecutorC.connect(signer).batchExecutor1(
       counterC.address,
       dataArr,
       valueArr
