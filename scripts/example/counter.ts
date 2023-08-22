@@ -31,6 +31,7 @@ async function main() {
       { gasLimit: 10000000 }
     );
     await tx.wait();
+
     const afterCount = await counterC.count();
     console.log("after: ", afterCount.toString());
   }
